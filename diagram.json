@@ -1,0 +1,1189 @@
+{
+  "version": 1,
+  "author": "Sergio Cordero Calvimontes / revised with ChatGPT",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-text",
+      "id": "title",
+      "top": -40,
+      "left": 300,
+      "attrs": {
+        "text": "2D PLOTTER - Arduino Uno"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "labelX",
+      "top": 5,
+      "left": 190,
+      "attrs": {
+        "text": "EIXO X"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "labelY",
+      "top": 5,
+      "left": 650,
+      "attrs": {
+        "text": "EIXO Y"
+      }
+    },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "motX",
+      "top": 35,
+      "left": 120,
+      "attrs": {
+        "display": "angle",
+        "arrow": "orange"
+      }
+    },
+    {
+      "type": "wokwi-a4988",
+      "id": "drvX",
+      "top": 145,
+      "left": 145,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led-bar-graph",
+      "id": "barX",
+      "top": 70,
+      "left": 350,
+      "rotate": 90,
+      "attrs": {
+        "color": "GYR"
+      }
+    },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "motY",
+      "top": 35,
+      "left": 590,
+      "attrs": {
+        "display": "angle",
+        "arrow": "cyan"
+      }
+    },
+    {
+      "type": "wokwi-a4988",
+      "id": "drvY",
+      "top": 145,
+      "left": 615,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led-bar-graph",
+      "id": "barY",
+      "top": 70,
+      "left": 820,
+      "rotate": 90,
+      "attrs": {
+        "color": "GYR"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "labelSR",
+      "top": 215,
+      "left": 365,
+      "attrs": {
+        "text": "EXPANSAO DAS BARRAS - 3 x 74HC595"
+      }
+    },
+    {
+      "type": "wokwi-74hc595",
+      "id": "sr0",
+      "top": 245,
+      "left": 360,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-74hc595",
+      "id": "sr1",
+      "top": 245,
+      "left": 500,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-74hc595",
+      "id": "sr2",
+      "top": 245,
+      "left": 640,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 330,
+      "left": 165,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "labelUI",
+      "top": 340,
+      "left": 480,
+      "attrs": {
+        "text": "MESA VIRTUAL / TELEMETRIA"
+      }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 375,
+      "left": 490,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-analog-joystick",
+      "id": "joy1",
+      "top": 365,
+      "left": 700,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "labelZ",
+      "top": 340,
+      "left": 875,
+      "attrs": {
+        "text": "CANETA - EIXO Z"
+      }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servoZ",
+      "top": 380,
+      "left": 875,
+      "attrs": {
+        "horn": "single",
+        "hornColor": "#555555"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "labelCmd",
+      "top": 545,
+      "left": 175,
+      "attrs": {
+        "text": "COMANDOS"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btnHome",
+      "top": 580,
+      "left": 145,
+      "attrs": {
+        "color": "green",
+        "key": "H"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btnEStop",
+      "top": 580,
+      "left": 265,
+      "attrs": {
+        "color": "red",
+        "key": "E"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "labelHome",
+      "top": 635,
+      "left": 135,
+      "attrs": {
+        "text": "HOME [H]"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "labelEStop",
+      "top": 635,
+      "left": 245,
+      "attrs": {
+        "text": "E-STOP [E]"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "labelAux",
+      "top": 535,
+      "left": 500,
+      "attrs": {
+        "text": "SAIDAS AUXILIARES"
+      }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relaySuction",
+      "top": 575,
+      "left": 470,
+      "attrs": {
+        "transistor": "pnp"
+      }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relayFan",
+      "top": 575,
+      "left": 690,
+      "attrs": {
+        "transistor": "pnp"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "loadSuction",
+      "top": 595,
+      "left": 610,
+      "attrs": {
+        "color": "blue",
+        "label": "Mesa de succao"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "rSuction",
+      "top": 605,
+      "left": 570,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "loadFan",
+      "top": 595,
+      "left": 830,
+      "attrs": {
+        "color": "green",
+        "label": "Ventilador"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "rFan",
+      "top": 605,
+      "left": 790,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "uno:5V",
+      "drvX:VDD",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5V",
+      "drvY:VDD",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.1",
+      "drvX:GND.1",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "drvX:GND.1",
+      "drvX:GND.2",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.1",
+      "drvY:GND.1",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "drvY:GND.1",
+      "drvY:GND.2",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "drvX:RESET",
+      "drvX:SLEEP",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "drvY:RESET",
+      "drvY:SLEEP",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:13",
+      "drvX:ENABLE",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:13",
+      "drvY:ENABLE",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "drvX:1B",
+      "motX:B-",
+      "orange",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "drvX:1A",
+      "motX:B+",
+      "orange",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "drvX:2A",
+      "motX:A+",
+      "blue",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "drvX:2B",
+      "motX:A-",
+      "blue",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "drvY:1B",
+      "motY:B-",
+      "orange",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "drvY:1A",
+      "motY:B+",
+      "orange",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "drvY:2A",
+      "motY:A+",
+      "blue",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "drvY:2B",
+      "motY:A-",
+      "blue",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:2",
+      "drvX:STEP",
+      "purple",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:3",
+      "drvX:DIR",
+      "yellow",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:4",
+      "drvY:STEP",
+      "purple",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5",
+      "drvY:DIR",
+      "yellow",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5V",
+      "joy1:VCC",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.2",
+      "joy1:GND",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "joy1:HORZ",
+      "uno:A0",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "joy1:VERT",
+      "uno:A1",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "joy1:SEL",
+      "uno:10",
+      "orange",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.2",
+      "btnHome:1.l",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "btnHome:2.l",
+      "uno:11",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.2",
+      "btnEStop:1.l",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "btnEStop:2.l",
+      "uno:12",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5V",
+      "oled1:VCC",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.3",
+      "oled1:GND",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "oled1:SDA",
+      "uno:A4",
+      "cyan",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "oled1:SCL",
+      "uno:A5",
+      "magenta",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5V",
+      "servoZ:V+",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.3",
+      "servoZ:GND",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:9",
+      "servoZ:PWM",
+      "purple",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:6",
+      "sr0:DS",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:7",
+      "sr0:SHCP",
+      "cyan",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:8",
+      "sr0:STCP",
+      "magenta",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr0:SHCP",
+      "sr1:SHCP",
+      "cyan",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr1:SHCP",
+      "sr2:SHCP",
+      "cyan",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr0:STCP",
+      "sr1:STCP",
+      "magenta",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr1:STCP",
+      "sr2:STCP",
+      "magenta",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr0:Q7S",
+      "sr1:DS",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr1:Q7S",
+      "sr2:DS",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5V",
+      "sr0:VCC",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5V",
+      "sr0:MR",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.1",
+      "sr0:GND",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.1",
+      "sr0:OE",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5V",
+      "sr1:VCC",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5V",
+      "sr1:MR",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.1",
+      "sr1:GND",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.1",
+      "sr1:OE",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5V",
+      "sr2:VCC",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5V",
+      "sr2:MR",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.1",
+      "sr2:GND",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.1",
+      "sr2:OE",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr0:Q0",
+      "barX:A1",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr0:Q1",
+      "barX:A2",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr0:Q2",
+      "barX:A3",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr0:Q3",
+      "barX:A4",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr0:Q4",
+      "barX:A5",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr0:Q5",
+      "barX:A6",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr0:Q6",
+      "barX:A7",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr0:Q7",
+      "barX:A8",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr1:Q0",
+      "barX:A9",
+      "yellow",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr1:Q1",
+      "barX:A10",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr1:Q2",
+      "barY:A1",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr1:Q3",
+      "barY:A2",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr1:Q4",
+      "barY:A3",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr1:Q5",
+      "barY:A4",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr1:Q6",
+      "barY:A5",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr1:Q7",
+      "barY:A6",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr2:Q0",
+      "barY:A7",
+      "yellow",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr2:Q1",
+      "barY:A8",
+      "yellow",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr2:Q2",
+      "barY:A9",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "sr2:Q3",
+      "barY:A10",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.1",
+      "barX:C1",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barX:C1",
+      "barX:C2",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barX:C2",
+      "barX:C3",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barX:C3",
+      "barX:C4",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barX:C4",
+      "barX:C5",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barX:C5",
+      "barX:C6",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barX:C6",
+      "barX:C7",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barX:C7",
+      "barX:C8",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barX:C8",
+      "barX:C9",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barX:C9",
+      "barX:C10",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.1",
+      "barY:C1",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barY:C1",
+      "barY:C2",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barY:C2",
+      "barY:C3",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barY:C3",
+      "barY:C4",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barY:C4",
+      "barY:C5",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barY:C5",
+      "barY:C6",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barY:C6",
+      "barY:C7",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barY:C7",
+      "barY:C8",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barY:C8",
+      "barY:C9",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "barY:C9",
+      "barY:C10",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5V",
+      "relaySuction:VCC",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.3",
+      "relaySuction:GND",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5V",
+      "relayFan:VCC",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:GND.3",
+      "relayFan:GND",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:A2",
+      "relaySuction:IN",
+      "blue",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:A3",
+      "relayFan:IN",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5V",
+      "relaySuction:COM",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "relaySuction:NO",
+      "rSuction:1",
+      "blue",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "rSuction:2",
+      "loadSuction:A",
+      "blue",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "loadSuction:C",
+      "uno:GND.3",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "uno:5V",
+      "relayFan:COM",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "relayFan:NO",
+      "rFan:1",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "rFan:2",
+      "loadFan:A",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "loadFan:C",
+      "uno:GND.3",
+      "black",
+      [
+        "v0"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}

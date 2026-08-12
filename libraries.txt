@@ -1,0 +1,8 @@
+# Wokwi Library List
+# See https://docs.wokwi.com/guides/libraries
+
+# Automatically added based on includes:
+AccelStepper
+Adafruit GFX Library
+Adafruit SSD1306
+Servo

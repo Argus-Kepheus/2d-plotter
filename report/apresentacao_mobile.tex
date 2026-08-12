@@ -1,0 +1,119 @@
+% !TeX program = lualatex
+% !TeX encoding = UTF-8
+% !TeX spellcheck = pt_BR
+
+\documentclass[11pt]{article}
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}
+\usepackage[brazilian]{babel}
+\usepackage{geometry}
+\geometry{paperwidth=90mm,paperheight=160mm,top=9mm,bottom=11mm,left=6mm,right=6mm}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\definecolor{primary}{HTML}{1D4ED8}
+\definecolor{green}{HTML}{166534}
+\definecolor{red}{HTML}{B91C1C}
+\definecolor{cardbg}{HTML}{F3F4F6}
+\definecolor{border}{HTML}{D1D5DB}
+\hypersetup{colorlinks=true,linkcolor=primary,urlcolor=primary}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{\tiny\color{black!45} 2D Plotter}
+\rfoot{\tiny\color{black!45} Slide \thepage\ de \pageref{LastPage}}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=1.2em,itemsep=0.25em,topsep=0.25em}
+
+\newcommand{\WokwiURL}{https://wokwi.com/projects/472168224663835649}
+\newcommand{\cardwidth}{\dimexpr\linewidth-13pt\relax}
+\newcommand{\slideheader}[1]{%
+  {\Large\bfseries\color{primary} #1}\par\vspace{2mm}
+  {\color{primary}\hrule height 1.1pt}\vspace{4mm}}
+\newcommand{\card}[2]{%
+  \begin{tikzpicture}
+  \node[fill=cardbg,draw=border,rounded corners=6pt,inner sep=6pt,
+    text width=\cardwidth]{\small\textbf{\color{primary}#1}\\[3pt]
+    \footnotesize #2};
+  \end{tikzpicture}\par\vspace{3mm}}
+\newcommand{\alertcard}[3]{%
+  \begin{tikzpicture}
+  \node[fill=#1!8,draw=#1!45,rounded corners=6pt,inner sep=6pt,
+    text width=\cardwidth]{\small\textbf{\color{#1}#2}\\[3pt]
+    \footnotesize #3};
+  \end{tikzpicture}\par\vspace{3mm}}
+
+\begin{document}
+
+\begin{center}
+\vspace*{6mm}
+{\Huge\bfseries\color{primary}2D Plotter}\par\vspace{4mm}
+{\large Controle cartesiano com Arduino Uno}\par\vspace{8mm}
+\begin{tikzpicture}
+\node[fill=cardbg,draw=primary!35,rounded corners=8pt,inner sep=8pt,
+  text width=\dimexpr\linewidth-18pt\relax,align=center]{
+  \textbf{Sergio Cordero Calvimontes}\\[4pt]
+  Arduino C++ · Wokwi\\[4pt]
+  Movimento X/Y · Caneta Z · Telemetria};
+\end{tikzpicture}
+\vfill
+\url{\WokwiURL}
+\end{center}
+\newpage
+
+\slideheader{Arquitetura}
+\card{Controle central}{Arduino Uno executa um superlaço não bloqueante e
+chama \texttt{AccelStepper::run()} continuamente.}
+\card{Atuadores}{2 motores + 2 A4988 nos eixos X/Y; servo para três alturas da
+caneta; relés para sucção e ventilação.}
+\card{Interface}{Joystick, HOME, E-STOP, OLED SSD1306 e duas barras de dez
+segmentos comandadas por 3 × 74HC595.}
+\alertcard{primary}{Escala do projeto}{31 elementos, 113 conexões e 530 linhas
+de firmware no pacote analisado.}
+\newpage
+
+\slideheader{Movimento e caneta}
+\card{Comando X/Y}{Joystick com centro 512 e zona morta ±70. Comandos são
+escalados até 800 passos/s, com aceleração de 450 passos/s².}
+\card{Área lógica}{X: 0--4000 passos. Y: 0--2400 passos. O OLED mapeia a
+posição para uma mesa virtual.}
+\card{Eixo Z}{O seletor percorre \textbf{alta → meia → baixa → alta}, em 180°,
+90° e 0°, com antirrepique não bloqueante.}
+\alertcard{red}{Limitação}{HOME retorna à origem lógica; sem sensores físicos,
+não realiza referenciamento mecânico nem detecta perda de passos.}
+\newpage
+
+\slideheader{Telemetria e cargas}
+\card{OLED}{Exibe X/Y, estado Z, sucção e ventilação. O marcador da caneta muda
+de forma e as bordas indicam limites ativos.}
+\card{Barras X/Y}{A velocidade real de cada eixo é convertida em rpm e nível
+0--10. Atualização a cada 30 ms por três registradores em cascata.}
+\card{Sucção}{Permanece ligada durante a sessão de trabalho e desliga no início
+de HOME.}
+\card{Ventilação}{Liga com movimento ou HOME e permanece ativa por dois
+segundos após a parada.}
+\newpage
+
+\slideheader{Segurança e validação}
+\alertcard{red}{E-STOP travado}{Desabilita ambos os A4988, desliga as cargas,
+zera as barras e exige reset. A leitura tem prioridade no laço.}
+\alertcard{green}{Verificações}{Testes Python conferem JSON, componentes,
+ligações críticas, pinagem, dependências e ausência de \texttt{delay()}.}
+\card{Para hardware real}{Adicionar HOME/fins de curso, fonte e desacoplamento
+de VMOT, ajuste de corrente, resistores nos 20 LEDs e E-STOP cabeado.}
+\alertcard{primary}{Resultado}{Estrutura reproduzível com firmware, circuito,
+documentação bilíngue, testes e relatório versionáveis.}
+
+\end{document}
