@@ -1,10 +1,9 @@
 # Relatório LaTeX
 
-Esta pasta contém dois documentos do projeto 2D Plotter:
+Esta pasta contém o relatório técnico do projeto 2D Plotter:
 
-- `relatorio.tex` / `relatorio.pdf` — relatório técnico completo;
-- `apresentacao_mobile.tex` / `apresentacao_mobile.pdf` — apresentação
-  vertical 9:16 para leitura em celular.
+- `relatorio.tex` — fonte autoritativa em LaTeX;
+- `relatorio.pdf` — versão compilada para distribuição.
 
 ## Estrutura
 
@@ -12,11 +11,10 @@ Esta pasta contém dois documentos do projeto 2D Plotter:
 report/
 ├── relatorio.tex
 ├── relatorio.pdf
-├── apresentacao_mobile.tex
-├── apresentacao_mobile.pdf
 ├── build.ps1
 ├── README.md
 └── figures/
+    ├── front-cover.png
     └── README.md
 ```
 
@@ -26,7 +24,6 @@ Execute a partir de qualquer diretório:
 
 ```powershell
 .\report\build.ps1
-.\report\build.ps1 -Document apresentacao_mobile
 ```
 
 O script usa `latexmk -lualatex` quando disponível e, se necessário, executa
@@ -37,7 +34,6 @@ Opções:
 
 ```powershell
 .\report\build.ps1 -Clean
-.\report\build.ps1 -Document apresentacao_mobile -Clean
 .\report\build.ps1 -KeepTemp
 .\report\build.ps1 -Open
 ```

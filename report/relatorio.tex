@@ -13,6 +13,7 @@
 \usepackage{geometry}
 \geometry{top=2.2cm,bottom=2.2cm,left=2.1cm,right=2.1cm}
 \usepackage{microtype}
+\usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{array}
@@ -67,13 +68,23 @@
 
 \begin{titlepage}
   \centering
-  \vspace*{1.8cm}
+  \vspace*{0.6cm}
   {\Large Projeto de automação e controle\par}
-  \vfill
+  \vspace{0.9cm}
   {\Huge\bfseries 2D Plotter\par}
-  \vspace{0.5cm}
+  \vspace{0.35cm}
   {\Large Controle cartesiano com Arduino Uno e Wokwi\par}
-  \vfill
+  \vspace{0.8cm}
+  \href{\CandidateWebsite}{%
+    \includegraphics[
+      width=\textwidth,
+      height=0.40\textheight,
+      keepaspectratio
+    ]{figures/front-cover.png}%
+  }\par
+  \vspace{0.2cm}
+  {\small\itshape Ilustração conceitual do sistema; clique para acessar o website do autor.\par}
+  \vspace{0.7cm}
   \begin{tabular}{rl}
     Responsável: & \CandidateName \\
     Plataforma: & Arduino Uno R3 \\

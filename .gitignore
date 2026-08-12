@@ -14,7 +14,7 @@ build/
 *.eep
 *.map
 
-# LaTeX build artifacts (the final PDFs are versioned)
+# LaTeX build artifacts (the final report PDF is versioned)
 report/*.aux
 report/*.log
 report/*.out

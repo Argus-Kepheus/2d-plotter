@@ -2,7 +2,6 @@
 
 [CmdletBinding()]
 param(
-    [ValidateSet('relatorio', 'apresentacao_mobile')]
     [string]$Document = 'relatorio',
     [switch]$Clean,
     [switch]$KeepTemp,
