@@ -106,6 +106,7 @@ states, HOME, load timing, both limits, and E-STOP during motion.
 
 ## 10. References
 
+- [GitHub repository](https://github.com/Argus-Kepheus/2d-plotter)
 - [Wokwi project](https://wokwi.com/projects/472168224663835649)
 - [Arduino Uno Rev3](https://docs.arduino.cc/hardware/uno-rev3/)
 - [AccelStepper](https://www.airspayce.com/mikem/arduino/AccelStepper/)

@@ -174,6 +174,7 @@ estados Z, HOME, temporização das cargas e E-STOP no Wokwi.
 
 ## 14. Referências
 
+- [Repositório no GitHub](https://github.com/Argus-Kepheus/2d-plotter)
 - [Projeto no Wokwi](https://wokwi.com/projects/472168224663835649)
 - [Arduino Uno Rev3](https://docs.arduino.cc/hardware/uno-rev3/)
 - [AccelStepper](https://www.airspayce.com/mikem/arduino/AccelStepper/)

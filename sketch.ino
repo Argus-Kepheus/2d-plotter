@@ -102,6 +102,8 @@ struct DebouncedButton {
   bool lastRawState = HIGH;
   unsigned long lastChangeMs = 0;
 
+  explicit DebouncedButton(uint8_t buttonPin) : pin(buttonPin) {}
+
   void begin() {
     pinMode(pin, INPUT_PULLUP);
     stableState = digitalRead(pin);

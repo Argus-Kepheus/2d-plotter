@@ -6,6 +6,8 @@ Este projeto simula uma plotter cartesiana X/Y com caneta posicionada por
 servo. Um Arduino Uno coordena dois motores de passo, a interface do operador,
 as indicações de velocidade e duas saídas auxiliares.
 
+**Repositório:** <https://github.com/Argus-Kepheus/2d-plotter>
+
 **Simulação:** <https://wokwi.com/projects/472168224663835649>
 
 ## Visão funcional

@@ -149,6 +149,13 @@ class ProjectConsistencyTests(unittest.TestCase):
             r"if \(emergency\) \{[\s\S]*?return;[\s\S]*?\}",
         )
 
+    def test_debounced_button_has_explicit_pin_constructor(self) -> None:
+        """Keep initialization compatible with the Arduino C++ toolchain."""
+        self.assertIn(
+            "explicit DebouncedButton(uint8_t buttonPin) : pin(buttonPin) {}",
+            self.sketch,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

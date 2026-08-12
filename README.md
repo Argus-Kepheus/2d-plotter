@@ -1,6 +1,6 @@
 # 2D Plotter
 
-[![Ilustração conceitual de uma plotter cartesiana de dois eixos](report/figures/front-cover.png)](https://argus-kepheus.github.io/sergio-cordero-calvimontes/#home)
+![Ilustração conceitual de uma plotter cartesiana de dois eixos](report/figures/front-cover.png)
 
 Sistema de controle de uma plotter cartesiana de dois eixos, desenvolvido para
 Arduino Uno e simulado no Wokwi. O firmware controla movimento X/Y com drivers
@@ -9,6 +9,8 @@ parada de emergência, telemetria em OLED, barras de velocidade e cargas
 auxiliares por relé.
 
 **Documentação completa:** [Português](docs/PT/README.md) · [English](docs/EN/README.md)
+
+**Repositório no GitHub:** <https://github.com/Argus-Kepheus/2d-plotter>
 
 **Simulação no Wokwi:** <https://wokwi.com/projects/472168224663835649>
 

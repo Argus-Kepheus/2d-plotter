@@ -6,6 +6,8 @@ This project simulates an X/Y Cartesian plotter with a servo-positioned pen.
 An Arduino Uno coordinates two stepper motors, the operator interface, speed
 indicators, and two auxiliary outputs.
 
+**Repository:** <https://github.com/Argus-Kepheus/2d-plotter>
+
 **Simulation:** <https://wokwi.com/projects/472168224663835649>
 
 ## Functional overview
