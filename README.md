@@ -10,7 +10,7 @@ auxiliares por relé.
 
 **Documentação completa:** [Português](docs/PT/README.md) · [English](docs/EN/README.md)
 
-**Repositório no GitHub:** <https://github.com/Argus-Kepheus/2d-plotter>
+**Relatório técnico (Português):** [`report/relatorio.pdf`](report/relatorio.pdf)
 
 **Simulação no Wokwi:** <https://wokwi.com/projects/472168224663835649>
 
@@ -34,13 +34,13 @@ auxiliares por relé.
 | `tests/` | Verificações estáticas de consistência |
 | `report/` | Relatório técnico em LaTeX e PDF |
 
-## Validação local
+## Validação
 
 ```powershell
 python -m unittest discover -s tests -v
 ```
 
-## Limitações de segurança
+## Limitações
 
 Os limites X/Y e a origem são lógicos: o circuito não possui chaves físicas de
 fim de curso. Em hardware real, use sensores de referência, fonte independente
