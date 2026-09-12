@@ -89,6 +89,9 @@ bool emergency  = false;
 bool isHoming   = false;
 bool workActive = false;
 
+bool suctionOn = false;
+bool fanOn     = false;
+
 int8_t lastCommandDirX = 0;
 int8_t lastCommandDirY = 0;
 
@@ -284,11 +287,11 @@ void updateAuxiliaryLoads() {
   // A mesa de succao fica ligada durante uma sessao de trabalho.
   // A sessao e armada quando o operador movimenta um eixo ou altera Z,
   // e e encerrada quando HOME e solicitado.
-  const bool suctionOn = workActive && !isHoming;
+  suctionOn = workActive && !isHoming;
 
   // O ventilador acompanha o movimento e permanece ligado por 2 s
   // depois que os motores param.
-  const bool fanOn = moving || isHoming || ((millis() - lastMotionMs) < FAN_HOLD_MS);
+  fanOn = moving || isHoming || ((millis() - lastMotionMs) < FAN_HOLD_MS);
 
   // No diagram.json os modulos usam transistor="pnp", portanto HIGH
   // conecta COM a NO e acende a carga visual ligada ao contato NO.
@@ -385,9 +388,9 @@ void drawNormalScreen() {
   }
 
   display.print(F(" S:"));
-  display.print(digitalRead(RELAY_SUCTION_PIN) == HIGH ? '1' : '0');
+  display.print(suctionOn ? '1' : '0');
   display.print(F(" F:"));
-  display.print(digitalRead(RELAY_FAN_PIN) == HIGH ? '1' : '0');
+  display.print(fanOn ? '1' : '0');
 
   drawTableAndPen();
   display.display();
@@ -449,6 +452,11 @@ void setup() {
       digitalWrite(STEPPERS_ENABLE_PIN, HIGH);
     }
   }
+
+  // Fast Mode (400 kHz): o buffer inteiro do OLED (1 KB) e enviado por I2C a
+  // cada atualizacao de tela; em 100 kHz (padrao) essa transferencia bloqueia
+  // o loop por tempo suficiente para prejudicar a suavidade dos steppers.
+  Wire.setClock(400000);
 
   display.clearDisplay();
   display.display();
