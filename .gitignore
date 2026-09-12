@@ -14,7 +14,9 @@ build/
 *.eep
 *.map
 
-# LaTeX build artifacts (the final report PDF is versioned)
+# LaTeX build artifacts, including the compiled report PDF (generate it
+# locally with report/build.ps1; it is not versioned)
+report/*.pdf
 report/*.aux
 report/*.log
 report/*.out

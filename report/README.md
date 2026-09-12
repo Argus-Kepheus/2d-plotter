@@ -3,18 +3,19 @@
 Esta pasta contém o relatório técnico do projeto 2D Plotter:
 
 - `relatorio.tex` — fonte autoritativa em LaTeX;
-- `relatorio.pdf` — versão compilada para distribuição.
+- `relatorio.pdf` — versão compilada, gerada localmente via `build.ps1` e
+  **não versionada** (ver `.gitignore`) para manter o repositório leve.
 
 ## Estrutura
 
 ```text
 report/
 ├── relatorio.tex
-├── relatorio.pdf
+├── relatorio.pdf   # gerado por build.ps1, não versionado
 ├── build.ps1
 ├── README.md
 └── figures/
-    ├── front-cover.png
+    ├── front-cover.jpg
     └── README.md
 ```
 

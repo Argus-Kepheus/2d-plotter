@@ -1,6 +1,6 @@
 # 2D Plotter
 
-![Ilustração conceitual de uma plotter cartesiana de dois eixos](report/figures/front-cover.png)
+![Ilustração conceitual de uma plotter cartesiana de dois eixos](report/figures/front-cover.jpg)
 
 Sistema de controle de uma plotter cartesiana de dois eixos, desenvolvido para
 Arduino Uno e simulado no Wokwi. O firmware controla movimento X/Y com drivers
@@ -10,7 +10,8 @@ auxiliares por relé.
 
 **Documentação completa:** [Português](docs/PT/README.md) · [English](docs/EN/README.md)
 
-**Relatório técnico (Português):** [`report/relatorio.pdf`](report/relatorio.pdf)
+**Relatório técnico (Português):** fonte em [`report/relatorio.tex`](report/relatorio.tex);
+gere o PDF localmente com `report/build.ps1` (veja [`report/README.md`](report/README.md)).
 
 **Simulação no Wokwi:** <https://wokwi.com/projects/472168224663835649>
 
@@ -32,7 +33,7 @@ auxiliares por relé.
 | `libraries.txt` | Dependências instaladas pelo Wokwi |
 | `docs/PT/` e `docs/EN/` | Documentação técnica bilíngue |
 | `tests/` | Verificações estáticas de consistência |
-| `report/` | Relatório técnico em LaTeX e PDF |
+| `report/` | Relatório técnico em LaTeX (PDF gerado localmente, não versionado) |
 
 ## Validação
 
